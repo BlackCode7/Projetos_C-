@@ -24,18 +24,20 @@ namespace GerenciadorDeTarefas.Controllers
         //criando metodo de API POST
         [HttpPost]
         public IActionResult EfetuarLogin([FromBody] LoginRequisicaoDto requisicao)
-        {
+        {            
             try
             {
+                // Se o usuário não passar os dados corretos retorna este erro
                 if (requisicao == null||requisicao.Login == null||requisicao.Senha == null) 
                 {
                     return BadRequest(new ErroRespostaDto()
                     {
                         Status = StatusCodes.Status400BadRequest,
                         Erro = "Parâmetros de entrada inválidos"
-                    });
-                        
+                    });                        
                 }
+                // Se o usuário passsar dados corretos retorna mensagem de sucesso
+                return Ok("Usuário autenticado com sucesso!");
             }
             catch(Exception excecao)
             {
